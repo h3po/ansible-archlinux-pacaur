@@ -15,7 +15,7 @@
   when: archlinux-pacaur_cower_key | failed
 
 - include_role:
-    name: jtyr.archlinux_aur
+    name: h3po.archlinux_aur
   vars:
     archlinux_aur_pkgs:
       - cower
