@@ -5,14 +5,14 @@
 
 - name: Check if cower package signing key is installed
   shell: gpg --list-keys 1EB2638FF56C0C53
-  register: archlinux-pacaur_cower_key
+  register: pacaur_cower_key
   changed_when: false
-  failed_when: ('No public key' in archlinux-pacaur_cower_key.stderr)
+  failed_when: ('No public key' in pacaur_cower_key.stderr)
   ignore_errors: true
 
 - name: Download and sign cower package signing key
   shell: gpg --keyserver hkp://pgp.mit.edu --recv-keys 1EB2638FF56C0C53 && gpg --lsign-key 1EB2638FF56C0C53
-  when: archlinux-pacaur_cower_key | failed
+  when: pacaur_cower_key | failed
 
 - include_role:
     name: h3po.archlinux_aur
