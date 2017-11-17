@@ -13,3 +13,4 @@ galaxy_info:
     - system
 dependencies: 
   - src: git+https://github.com/h3po/ansible-archlinux_aur.git
+    name: h3po.archlinux_aur
