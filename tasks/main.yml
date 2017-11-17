@@ -1,7 +1,7 @@
 ---
 - name: Test distribution
   assert:
-    that: ansible_os_family == "Arch Linux"
+    that: ansible_os_family == "Archlinux"
 
 - name: Check if cower package signing key is installed
   shell: gpg --list-keys 1EB2638FF56C0C53
