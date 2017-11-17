@@ -1,0 +1,28 @@
+---
+- name: Test distribution
+  assert:
+    that: ansible_os_family == "Arch Linux"
+
+- include_role:
+    name: jtyr.archlinux_aur
+  vars:
+    archlinux_aur_pkgs:
+      - cower
+      - pacaur
+  tags:
+    - pacaur_prereq
+
+- name: Check if package is installed
+  command: pacman -Q {{item}}
+  ignore_errors: yes
+  changed_when: false
+  register: archlinux_pacaur_check
+  with_items: "{{archlinux_pacaur_pkgs}}"
+
+- name: Build and install package using pacaur
+  command: pacaur -Syu --noconfirm {{item.item}}
+  register: archlinux_pacaur_result
+  with_items: "{{archlinux_pacaur_check.results}}"
+  when: "item.rc != 0"
+  tags:
+    - pacaur_pkgs
