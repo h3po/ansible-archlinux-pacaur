@@ -11,6 +11,3 @@ galaxy_info:
         - all
   categories:
     - system
-dependencies: 
-  - src: git+https://github.com/h3po/ansible-archlinux_aur.git
-    name: h3po.archlinux_aur
